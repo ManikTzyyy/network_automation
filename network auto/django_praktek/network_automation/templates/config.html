@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/style.css"> 
+
+  </head>
+  <body>
+   <!-- navbar -->
+   <div class="container-navbar">
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="/static/image/bandwidth.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          Change configuration
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link "  href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/devices">List Devices</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+   </div>
+   <!-- endnavbar -->
+   <div class="container-running-led"></div>
+
+   <!-- input -->
+   <div class="container-input">
+
+<form action="{% url 'simple' id_device=device.id %}" method="post">
+    {% csrf_token %}
+
+    <div class="content-config" style="margin: 10px;">
+      <div class="title" style="display: flex; justify-content: space-between;  align-items: center;">
+          <h3>Device</h3>
+          <a href="{% url 'ping' id_device=device.id %}" class="btn btn-lg btn-outline-info">ping</a>
+
+      </div>
+  </div>
+  
+      
+    <p style="border-bottom: 1px solid black;">Username   : {{ device.username }}</p>
+    <p style="border-bottom: 1px solid black;">Ip Address : {{ device.ip_address }}</p>
+    <p style="border-bottom: 1px solid black;">Hostname   : {{ device.hostname }}</p>
+   
+
+
+    
+  
+    <h3 style="grid-column: 1;">Choose your configuration!</h3>
+    <h3>Simple queue</h3>
+
+
+    <div class="d-flex justify-content-center pt-4"style="border-bottom: solid black;">
+      <!-- simple queue -->
+      <div class="d-flex justify-content-center pt-4" >
+        <div class="mb-3">
+          <label class="form-label">Ip Target</label>
+          <input class="form-control form-control-lg" type="text" name="target_simple_queue" id="target_simple_queue" placeholder="Enter IP target" />
+          <label class="form-label">limit max download</label>
+          <input class="form-control form-control-lg" type="text" name="simple_que_max_down" id="simple_que_max_down" placeholder="Example 1M" />
+          <label class="form-label">limit max upload</label>
+          <input class="form-control form-control-lg" type="text" name="simple_que_max_up" id="simple_que_max_up" placeholder="Example 1M" />
+          <button  type="submit" class="btn btn-lg btn-primary" style="margin: 5px;max-height: 50px;" name="config" value="simple_queue">Simple Queue</button>
+        </div>
+    </div>
+ </div>
+
+<h3 style="padding-top: 20px;">Queue Tree</h3>
+
+  <div class="d-flex justify-content-center pt-4" style="border-bottom: solid black;" >
+    <!-- queue tree -->
+    <div class="d-flex justify-content-center pt-4" >
+      <div class="mb-3">
+        <!-- download -->
+        <label class="form-label">Ip Target download src</label>
+        <input class="form-control form-control-lg" type="text" name="target_queue_three" id="target_queue_three" placeholder="Enter IP target" />
+        <button type="submit" class="btn btn-lg btn-primary" style="margin: 5px; max-height: 50px; " name="config" value="queue_three">Queue Three</button>
+        <br>
+        <!-- download setting -->
+        <label class="form-label">set limit max download</label>
+        <input class="form-control form-control-lg" type="text" name="qtreeSetdown" id="qtreeSetdown" placeholder="Example 1M" />
+        <button type="submit" class="btn btn-lg btn-primary" style="margin: 5px; max-height: 50px; " name="config" value="Qtree_setDown">Set Limit Download</button>   
+      </div>
+      <div class="mb-3" style="padding: 0px 10px;">
+        <!-- uplod -->
+        <label class="form-label">Ip Target upload dst</label>
+        <input class="form-control form-control-lg" type="text" name="Qt_upload" id="Qt_upload" placeholder="Enter IP target" />
+        <button type="submit" class="btn btn-lg btn-primary" style="margin: 5px; max-height: 50px; " name="config" value="Qt_upload">Queue Three</button>
+        <br>
+        <!-- uplod setting -->
+        <label class="form-label">set limit max upload</label>
+        <input class="form-control form-control-lg" type="text" name="qtreeSetUP" id="qtreeSetUP" placeholder="Example 1M" />
+        <button type="submit" class="btn btn-lg btn-primary" style="margin: 5px; max-height: 50px; " name="config" value="Qtree_setUplod">Set Limit Upload</button>
+      </div>
+  
+  
+      
+    </div>  
+ </div>
+ 
+ <h3 style="padding-top: 20px;">HTB</h3>
+
+      <div class="d-flex justify-content-center pt-4">
+        <div class="d-flex justify-content-center pt-4">
+          <div class="mb-3">
+            <label class="form-label">Ip Target</label>
+            <input class="form-control form-control-lg" type="text" name="target_htb" id="target_htb" placeholder="Enter IP target" />
+            <label class="form-label">download/upload</label>
+            <input class="form-control form-control-lg" type="text" name="condition" id="condition" placeholder="Enter download or upload" />
+            <button type="submit" class="btn btn-lg btn-primary" style="margin: 5px; max-height: 50px;" name="config" value="HTB">HTB</button>
+          </div>
+        </div>
+      </div>
+        <a href="/" class="btn btn-lg btn-warning">Back</a>
+</form>
+
+
+    
+   <!-- endinput -->
+
+   
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</html>

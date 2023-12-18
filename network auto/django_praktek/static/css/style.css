@@ -1,0 +1,105 @@
+
+
+.navbar-nav a.active {
+  text-shadow: 0 0 10px #5fbdff;
+  
+}
+
+.navbar-nav a {
+  width: fit-content;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+
+.container-navbar .navbar-nav a {
+  position: relative;
+  font-size: 14px;
+}
+
+.container-navbar .navbar-nav a:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #5fbdff; /* Warna garis bawah */
+  transition: width 0.3s ease-in-out; /* Efek transisi untuk lebar garis bawah */
+}
+
+.container-navbar .navbar-nav a:hover:before {
+  width: 100%;
+}
+
+/* led */
+.container-running-led {
+  animation: changeColor 20s linear infinite;
+}
+
+@keyframes changeColor {
+  0% {
+    border-top-color: #5fbdff;
+    box-shadow: 0 0 3px 1px #5fbdff; /* Warna border dan glow pertama */
+  }
+  14.28% {
+    border-top-color: #ff0000;
+    box-shadow: 0 0 3px 1px #ff0000; /* Warna dan glow kedua */
+  }
+  28.57% {
+    border-top-color: #ff7f00;
+    box-shadow: 0 0 3px 1px #ff7f00; /* Warna dan glow ketiga */
+  }
+  42.85% {
+    border-top-color: #ffff00;
+    box-shadow: 0 0 3px 1px #ffff00; /* Warna dan glow keempat */
+  }
+  57.14% {
+    border-top-color: #00ff00;
+    box-shadow: 0 0 3px 1px #00ff00; /* Warna dan glow kelima */
+  }
+  71.42% {
+    border-top-color: #0000ff;
+    box-shadow: 0 0 3px 1px #0000ff; /* Warna dan glow keenam */
+  }
+  85.71% {
+    border-top-color: #4b0082;
+    box-shadow: 0 0 3px 1px #4b0082; /* Warna dan glow ketujuh */
+  }
+  100% {
+    border-top-color: #8b00ff;
+    box-shadow: 0 0 3px 1px #8b00ff; /* Warna dan glow terakhir */
+  }
+}
+
+/* end led */
+
+
+/* content device */
+
+.container-content{
+    margin: 20px;
+}
+
+.container-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+
+    padding-bottom: 20px;
+    
+}
+
+/* end content device */
+
+/* addpage */
+
+.container-input {
+    
+    padding: 20px;
+    margin-top: 10px;
+}
+/* end addpage */
+
+
